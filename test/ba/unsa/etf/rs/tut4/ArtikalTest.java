@@ -10,7 +10,7 @@ class ArtikalTest {
 
     @Test
     void getSifra() {
-        Artikal a = new Artikal("ABC", "Proizvod", 100);
+        Artikal a = new Artikal("ABC, Proizvod,  100");
         assertEquals("ABC", a.getSifra());
     }
 
