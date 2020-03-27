@@ -4,8 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
 
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -21,9 +23,11 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle){
         artikalChoiceBox.setItems(artikli);
     }
+
     public TextArea ulaz;
     public TextArea izlaz;
-    public void Dodaj(javafx.event.ActionEvent actionEvent) {
+
+    public void DodajArtikle(javafx.event.ActionEvent actionEvent) {
         String[] art = ulaz.getText().split("\n");
         StringBuilder dodaniArt= new StringBuilder();
         ArrayList<Artikal> lista = new ArrayList<Artikal>();
@@ -34,9 +38,21 @@ public class Controller implements Initializable {
         }
         lista.addAll(artikli);
         ObservableList<Artikal> rez=izbaciDuplikate(lista);
-        System.out.println(rez);
+
         artikli= rez;
         izlaz.setText(dodaniArt.toString());
     }
+/*
+NEKI POKUSAJ DA IZVEDEM 4. ZADATAK
 
+    public TextArea racun;
+    public Spinner<Integer> spinner;
+
+    public void Dodaj(javafx.event.ActionEvent actionEvent){
+       Artikal trenutniArtikal= artikalChoiceBox.getValue();
+       Integer kolicina=spinner.getValue();
+
+
+    }
+*/
 }

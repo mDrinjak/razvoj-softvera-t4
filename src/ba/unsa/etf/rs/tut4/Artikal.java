@@ -60,7 +60,7 @@ public class Artikal {
     }
 
     public void setNaziv(String naziv) {
-        if(sifra.isEmpty()){
+        if(naziv.isEmpty()){
             throw new IllegalArgumentException("Naziv je prazan");
         }
         this.naziv = naziv;
