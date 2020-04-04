@@ -32,6 +32,7 @@ class ControllerTest {
         stage.toFront();
     }
     @Test
+    //Test posoje li tabovi
     void Tabovi(FxRobot robot){
         NodeQuery tab1 = robot.lookup("#TabArtikli");
         assertNotNull(tab1);
@@ -40,6 +41,7 @@ class ControllerTest {
 
     }
     @Test
+    //Test postoje li svi elementi na tabu "Artikli"
     void elementiTaba1(FxRobot robot){
         Button btnDodajArt = robot.lookup("#btnDodaj1").queryAs(Button.class);
         assertNotNull(btnDodajArt);
@@ -50,6 +52,7 @@ class ControllerTest {
 
     }
     @Test
+    //Postoje li svi elementi na tabu "Racun"
     void elementiTaba2(FxRobot robot){
         Button btnDodaj2 = robot.lookup("#btnDodaj2").queryAs(Button.class);
         assertNotNull(btnDodaj2);
@@ -67,7 +70,8 @@ class ControllerTest {
         assertNotNull(fldRacun);
     }
     @Test
-    void DodajArtikle(FxRobot robot){
+    //Piritisnuto dugme
+    void DodajArtikle1(FxRobot robot){
         robot.clickOn("#ulaz");
         robot.write("HLB002,Hljeb,1.3\nMLK010,Mlijeko,2.5");
         try{
@@ -86,5 +90,60 @@ class ControllerTest {
         if(CBox.getItems().get(1)==listaArtikala.get(1)) assert true;
 
     }
+    @Test
+    //Ponavljanje artikala
+    void DodajArtikle2(FxRobot robot){
+        robot.clickOn("#ulaz");
+        robot.write("HLB002,Hljeb,1.3\nMLK010,Mlijeko,2.5\nMLK010,Mlijeko,2.5");
+        try{
+            Thread.sleep(1000);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        robot.clickOn("#btnDodaj1");
+        TextArea Dodani = robot.lookup("#izlaz").queryAs(TextArea.class);
+        assertEquals("HLB002, Hljeb, 1.3\nMLK010, Mlijeko, 2.5\n",Dodani.getText());
+        ObservableList<Artikal> listaArtikala= FXCollections.observableArrayList();
+        listaArtikala.add(0, new Artikal("HLB002", "Hljeb", 1.3));
+        listaArtikala.add(1, new Artikal("MLK010", "Mlijeko", 2.5));
+        ChoiceBox CBox=robot.lookup("#artikalChoiceBox").queryAs(ChoiceBox.class);
+        if(CBox.getItems().get(0)==listaArtikala.get(0)) assert true;
+        if(CBox.getItems().get(1)==listaArtikala.get(1)) assert true;
 
+    }
+    @Test
+    //Vise puta pritisnuto dugme
+    void DodajArtikle3(FxRobot robot){
+        robot.clickOn("#ulaz");
+        robot.write("HLB002,Hljeb,1.3\nMLK010,Mlijeko,2.5\nMLK010,Mlijeko,2.5");
+        try{
+            Thread.sleep(1000);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        robot.clickOn("#btnDodaj1");
+        try{
+            Thread.sleep(1000);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        robot.clickOn("#btnDodaj1");
+
+        try{
+            Thread.sleep(1000);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        robot.clickOn("#btnDodaj1");
+        TextArea Dodani = robot.lookup("#izlaz").queryAs(TextArea.class);
+        assertEquals("HLB002, Hljeb, 1.3\nMLK010, Mlijeko, 2.5\n",Dodani.getText());
+        ObservableList<Artikal> listaArtikala= FXCollections.observableArrayList();
+        listaArtikala.add(0, new Artikal("HLB002", "Hljeb", 1.3));
+        listaArtikala.add(1, new Artikal("MLK010", "Mlijeko", 2.5));
+        ChoiceBox CBox=robot.lookup("#artikalChoiceBox").queryAs(ChoiceBox.class);
+        if(CBox.getItems().get(0)==listaArtikala.get(0)) assert true;
+        if(CBox.getItems().get(1)==listaArtikala.get(1)) assert true;
+
+    }
 }
