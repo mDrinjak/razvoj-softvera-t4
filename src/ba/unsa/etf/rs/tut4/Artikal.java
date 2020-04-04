@@ -1,10 +1,6 @@
 package ba.unsa.etf.rs.tut4;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Artikal {
 
@@ -32,9 +28,7 @@ public class Artikal {
                pomLista.add(artikli.get(i));
        }
         artikli.clear();
-       for(Artikal x:  pomLista){
-           artikli.add(x);
-       }
+        artikli.addAll(pomLista);
 
     }
 
@@ -87,9 +81,6 @@ public class Artikal {
         return sifra+", "+naziv+", "+cijena;
     }
      public boolean equals(Artikal o){
-          if(this.getCijena()==o.getCijena() && this.getSifra()==o.getSifra() && this.getNaziv()==o.getNaziv()){
-                     return true;
-          }
-          return false;
+         return this.getCijena() == o.getCijena() && this.getSifra() == o.getSifra() && this.getNaziv() == o.getNaziv();
      }
 }

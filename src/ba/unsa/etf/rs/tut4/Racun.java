@@ -40,8 +40,8 @@ public class Racun {
     }
     public double ukupanIznos(){
         double suma=0;
-        for(int i=0; i<stavkaRacuna.size(); i++){
-            suma+=stavkaRacuna.get(i).getKolicina()*stavkaRacuna.get(i).artikl.getCijena();
+        for (Racun.stavkaRacuna racuna : stavkaRacuna) {
+            suma += racuna.getKolicina() * racuna.artikl.getCijena();
 
         }
         return suma;
